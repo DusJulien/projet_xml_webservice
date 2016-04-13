@@ -1,0 +1,8 @@
+bikee_shop_cms:
+    resource: "@BikeeShopCmsBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

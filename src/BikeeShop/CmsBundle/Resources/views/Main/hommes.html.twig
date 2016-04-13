@@ -1,0 +1,61 @@
+{% extends "BikeeShopCmsBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <div class="banner-bg banner-sec">
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <a href="{{ path('accueil_cms') }}"><img src="{{ asset('bundles/bikeeshopcms/images/logo.png') }}"
+                                                             alt=""/></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--/banner-->
+    <div class="bikes">
+        <div class="mountain-sec">
+            <h2>MEN BIKES</h2>
+
+            {% for product in products %}
+                <a href="{{ path('detail_product', { 'id': product.idProduct, 'slug' : product.slug }) }}">
+                    <div class="bike">
+                        <img src="{{ asset('bundles/bikeeshopcms/images/bik' ~ product.idProduct ~ '.jpg') }}"
+                             alt=""/>
+                        <div class="bike-cost">
+                            <div class="bike-mdl">
+                                <h4>{{ product.title }}<span>{{ product.price }} €</span></h4>
+                            </div>
+                            <div class="bike-cart">
+                                <a class="buy" href="{{ path('detail_product', { 'id': product.idProduct, 'slug' : product.slug }) }}">BUY
+                                    NOW</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="fast-viw">
+                            <a href="{{ path('detail_product', { 'id': product.idProduct, 'slug' : product.slug }) }}">Quick View</a>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+    <div class="text-center">
+        <ul class="pagination">
+            {% for i in range(1, maxPage) %}
+                {% if i == pageNumber %}
+                    <li class="active"><a href="{{ path('hommes', { pageNumber : i }) }}">{{ i }}</a></li>
+                {% else %}
+                    <li><a href="{{ path('hommes', { pageNumber : i }) }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

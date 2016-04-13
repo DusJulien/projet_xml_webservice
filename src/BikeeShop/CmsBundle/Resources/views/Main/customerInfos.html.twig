@@ -1,0 +1,50 @@
+{% extends "BikeeShopCmsBundle::layoutProduit.html.twig" %} {% block content %}
+
+    <div class="cart">
+        <div class="container">
+            <div class="cart-top">
+                <a href="{{ path('accueil_cms') }}"><< home</a>
+            </div>
+            <div class="row">
+                <br>
+                <h4 class="text-center">Saisie de vos informations</h4>
+                <div class="col-md-12">
+                    <form class="form-horizontal" action="{{ path('customerInfos') }}" method="POST" {{ form_enctype(form) }} >
+                        <div class="form-group">
+                            {{ form_errors(form.firstName) }}
+                            {{ form_label(form.firstName) }}
+                            {{ form_widget(form.firstName) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_errors(form.lastName) }}
+                            {{ form_label(form.lastName) }}
+                            {{ form_widget(form.lastName) }}
+                        </div>
+                        <div class="form-group">
+                            {{ form_errors(form.email) }}
+                            {{ form_label(form.email) }}
+                            {{ form_widget(form.email) }}
+                        </div>
+
+                        {{ form_rest(form) }}
+
+                        <button type="submit" class="btn btn-info">Valider la commande</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

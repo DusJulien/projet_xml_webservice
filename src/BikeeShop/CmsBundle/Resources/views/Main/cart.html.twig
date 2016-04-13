@@ -1,0 +1,62 @@
+{% extends "BikeeShopCmsBundle::layoutProduit.html.twig" %} {% block content %}
+
+    <div class="cart">
+        <div class="container">
+            <div class="cart-top">
+                <a href="{{ path('accueil_cms') }}"><< home</a>
+            </div>
+
+
+            <div class="col-md-9 cart-items">
+                <h2>My Shopping Bag ( {{ listProducts|length }} )</h2>
+
+                {% for product in listProducts %}
+
+                    <div class="cart-header">
+                        <div class="close1"></div>
+                        <div class="cart-sec">
+                            <div class="cart-item cyc">
+                                <img src="{{ asset('bundles/bikeeshopcms/images/bik' ~ product.idProduct ~ '.jpg') }}"/>
+                            </div>
+                            <div class="cart-item-info">
+                                <h3>{{ product.title }}</h3>
+                                <h4><span> $ </span>{{ product.price }}</h4>
+                                <p class="qty">Quantity :</p>
+                                <input min="1" type="number" id="quantity" name="quantity" value="1"
+                                       class="form-control input-small">
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="delivery">
+                                <span>Delivered in 2-3 bussiness days</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="col-md-3 cart-total">
+                <a class="continue" href="{{ path('shop_cms') }}">Continue to shop</a>
+                <div class="price-details">
+                    <h3>Price Details</h3>
+                    <span>Total</span>
+                    {% set total = 50 %}
+
+                    {% for product in listProducts %}
+                        {% set total = total + product.price %}
+                    {% endfor %}
+                    <span class="total">{{ total }}</span>
+                    <span>Delivery Charges</span>
+                    <span class="total">Offer</span>
+                    <div class="clearfix"></div>
+                </div>
+                <h4 class="last-price">TOTAL</h4>
+                <span class="total final">{{ total }}</span>
+                <div class="clearfix"></div>
+                <a class="order" href="#">Place Order</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

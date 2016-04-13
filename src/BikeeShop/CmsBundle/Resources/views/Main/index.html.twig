@@ -1,0 +1,138 @@
+{% extends "BikeeShopCmsBundle::layout.html.twig" %} {% block content %}
+
+
+
+
+<div class="banner-bg banner-bg1">
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="{{path('accueil_cms')}}"><img src="{{asset('bundles/bikeeshopcms/images/logo.png')}}" alt="" /></a>
+            </div>
+            <div class="top-nav">
+                <label class="mobile_menu" for="mobile_menu">
+                    <span>Menu</span>
+                </label>
+                <input id="mobile_menu" type="checkbox">
+                <ul class="nav">
+                    <li class="dropdown1"><a href="bicycles.html">BIKE</a>
+                        <ul class="dropdown2">
+                            <li><a href="{{ path('hommes', { 'pageNumber': 1 }) }}">MEN</a></li>
+                            <li><a href="{{ path('femmes', { 'pageNumber': 1 }) }}">WOMAN</a></li>
+                            <li><a href="">KID</a></li>
+                        </ul>
+                    </li>
+                    <a class="shop" href={{path('cart')}}><img src="{{asset('bundles/bikeeshopcms/images/cart.png')}}" alt="Basket" /></a>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="caption">
+        <div class="slider">
+            <div class="callbacks_container">
+                <ul class="rslides" id="slider">
+                    <li>
+                        <h1>FOR MEN</h1></li>
+                    <li>
+                        <h1>FOR WOMAN</h1></li>
+                    <li>
+                        <h1>FOR KID</h1></li>
+                </ul>
+                <p>You<span>create</span> the <span>journey,</span> we supply the <span>parts</span></p>
+                <a class="morebtn" href="{{ path ('shop_cms')}}">SHOP BIKES</a>
+            </div>
+        </div>
+    </div>
+    <div class="dwn">
+        <a class="scroll" href="#cate"><img src="{{asset('bundles/bikeeshopcms/images/scroll.png')}}" alt="" /></a>
+    </div>
+</div>
+<!--/banner-->
+<div id="cate" class="categories">
+    <div class="container">
+        <h3>CATEGORIES</h3>
+        <div class="categorie-grids">
+            <a href="{{ path ('shop_cms')}}">
+                <div class="col-md-4 cate-grid grid1">
+                    <h4>FIXED / SINGLE SPEED</h4>
+                    <p>Are you ready for the 27.5 Revloution ?</p>
+                    <a class="store" href="{{ path ('shop_cms')}}">GO TO STORE</a>
+                </div>
+            </a>
+            <a href="{{ path ('shop_cms')}}">
+                <div class="col-md-4 cate-grid grid2">
+                    <h4>PREMIMUM SERIES</h4>
+                    <p>Exclusive Bike Components</p>
+                    <a class="store" href="{{ path ('shop_cms')}}">GO TO STORE</a>
+                </div>
+            </a>
+            <a href="{{ path ('shop_cms')}}">
+                <div class="col-md-4 cate-grid grid3">
+                    <h4>CITY BIKES</h4>
+                    <p>Street Playground</p>
+                    <a class="store" href="{{ path ('shop_cms')}}">GO TO STORE</a>
+                </div>
+            </a>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--bikes-->
+<div class="bikes">
+<h3>POPULAR BIKES</h3>
+    <div class="bikes-grids">
+        <ul id="flexiselDemo1">
+
+            {% for product in products %}
+                <li>
+                    <img src="{{asset('bundles/bikeeshopcms/images/bik' ~ product.idProduct ~ '.jpg')}}" alt="" />
+                    <div class="bike-info">
+                        <div class="model">
+                            <h4>{{ product.title }}<span>{{  product.price }} €</span></h4>
+                        </div>
+                        <div class="model-info">
+                            <a href="{{ path('detail_product', { 'id': product.idProduct, 'slug' : product.slug }) }}">BUY</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="viw">
+                        <a href="{{ path('detail_product', { 'id': product.idProduct, 'slug' : product.slug }) }}">Quick View</a>
+                    </div>
+                </li>
+            {% endfor %}
+
+        </ul>
+        <script type="text/javascript">
+            $(window).load(function () {
+                $("#flexiselDemo1").flexisel({
+                    visibleItems: 3,
+                    animationSpeed: 1000,
+                    autoPlay: true,
+                    autoPlaySpeed: 3000,
+                    pauseOnHover: true,
+                    enableResponsiveBreakpoints: true,
+                    responsiveBreakpoints: {
+                        portrait: {
+                            changePoint: 480,
+                            visibleItems: 1
+                        },
+                        landscape: {
+                            changePoint: 640,
+                            visibleItems: 2
+                        },
+                        tablet: {
+                            changePoint: 768,
+                            visibleItems: 3
+                        }
+                    }
+                });
+            });
+        </script>
+        <script type="text/javascript" src="{{asset('bundles/bikeeshopcms/js/jquery.flexisel.js')}}"></script>
+    </div>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,76 @@
+{% extends "BikeeShopCmsBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <div class="banner-bg banner-sec">
+        <div class="container">
+            <div class="header">
+                <div class="logo">
+                    <a href="{{ path('accueil_cms') }}"><img src="{{ asset('bundles/bikeeshopcms/images/logo.png') }}"
+                                                             alt=""/></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!--/banner-->
+    <div class="bikes">
+        <div class="mountain-sec">
+            <h2>MEN BIKES</h2>
+
+            {% for productMen in productsMen %}
+                <a href="{{ path('detail_product', { 'id': productMen.idProduct, 'slug' : productMen.slug }) }}">
+                    <div class="bike">
+                        <img src="{{ asset('bundles/bikeeshopcms/images/bik' ~ productMen.idProduct ~ '.jpg') }}"
+                             alt=""/>
+                        <div class="bike-cost">
+                            <div class="bike-mdl">
+                                <h4>{{ productMen.title }}<span>${{ productMen.price }}</h4>
+                            </div>
+                            <div class="bike-cart">
+                                <a class="buy"
+                                   href="{{ path('detail_product', { 'id': productMen.idProduct, 'slug' : productMen.slug }) }}">BUY
+                                    NOW</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="fast-viw">
+                            <a href="{{ path('detail_product', { 'id': productMen.idProduct, 'slug' : productMen.slug }) }}">Quick
+                                View</a>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="singlespeed-sec">
+            <h2>WOMAN BIKES</h2>
+            {% for productWoman in productsWoman %}
+                <a href="{{ path('detail_product', { 'id': productWoman.idProduct, 'slug' : productWoman.slug }) }}">
+                    <div class="bike">
+                        <img src="{{ asset('bundles/bikeeshopcms/images/bik' ~ productWoman.idProduct ~ '.jpg') }}"
+                             alt=""/>
+                        <div class="bike-cost">
+                            <div class="bike-mdl">
+                                <h4>{{ productWoman.title }}<span>${{ productWoman.price }}</span></h4>
+                            </div>
+                            <div class="bike-cart">
+                                <a class="buy"
+                                   href="{{ path('detail_product', { 'id': productWoman.idProduct, 'slug' : productWoman.slug }) }}">BUY
+                                    NOW</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="fast-viw">
+                            <a href="{{ path('detail_product', { 'id': productWoman.idProduct, 'slug' : productWoman.slug }) }}">Quick
+                                View</a>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
